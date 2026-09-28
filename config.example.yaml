@@ -1,0 +1,37 @@
+# 蒸馏 (Distill) 配置示例
+# 用法:cp config.example.yaml config.yaml,然后填写
+
+server:
+  data_dir: ./data
+
+api:
+  # scnet 网关(OpenAI 兼容)
+  base_url: https://your-gateway.example.com/v1  # OpenAI 兼容网关
+  api_key: "sk-YOUR_KEY"  # 注册后填写
+  vision_model: Qwen3.8-Flash      # 实测能看图且图片 token 最省
+  text_model: Kimi-K2.6            # 实测 255 token/任务、零推理
+
+courses:
+  - 待分类      # 系统分类,勿删
+  - 思政课
+  - 高数
+  - 线代
+  - 程序设计
+  - 其他
+
+pipeline:
+  stt:
+    engine: funasr                  # funasr | faster-whisper
+    model: small                    # faster-whisper 档位: tiny/base/small/medium/large-v3
+    compute_type: int8
+    funasr_model: paraformer-zh     # funasr 模型(中文更好,需 ~1.5GB 下载)
+    funasr_vad: fsmn-vad
+    funasr_punc: ct-punc
+    hotwords: [两个结合, 中国式现代化]  # 热词(仅 funasr 生效)
+  schedule: "0 23 * * *"            # 每晚 23:00 批处理
+  session_gap_minutes: 60           # 时间聚簇:间隔超过 60 分钟切分会话
+
+paths:
+  inbox: ./data/inbox/待分类
+  trash: ./data/inbox/废纸篓
+  notes: ./data/笔记

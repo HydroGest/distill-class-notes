@@ -1,0 +1,10 @@
+flask
+PyYAML
+Pillow
+jieba
+faster-whisper
+funasr
+openai
+av
+wsgidav
+cheroot

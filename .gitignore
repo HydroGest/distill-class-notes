@@ -1,0 +1,21 @@
+# 个人笔记数据（绝不进仓库）
+data/
+*.lock
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv*/
+
+# 真实配置（含密钥）
+config.yaml
+
+# Logs
+logs/
+*.log
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
